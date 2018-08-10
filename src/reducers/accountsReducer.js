@@ -9,6 +9,8 @@ const accountsReducer = (state = initialState, action) => {
             return { ...state, accounts: action.payload.accounts }
         case 'ADD_PASSWORD':
             return { ...state, password: action.payload.password }
+        case 'CLEAR_PASSWORD':
+            return { ...state, password: action.payload.password }
         default:
             return state
     }

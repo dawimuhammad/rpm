@@ -8,7 +8,7 @@ import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import { withStyles } from '@material-ui/core/styles'
 
-import { addAccount, addPassword } from '../actions/accountActions'
+import { addAccount, addPassword, clearPassword } from '../actions/accountActions'
 import { connect } from 'react-redux'
 
 import LowercaseChip from '../components/LowercaseChip'
@@ -59,11 +59,7 @@ class RPMInput extends Component {
     }
 
     passwordChange(e) {
-        // this.setState({
-        //     password : e.target.value
-        // })
         this.props.addPassword(e.target.value)
-
     }
 
     submitAccount(e) {
@@ -72,7 +68,7 @@ class RPMInput extends Component {
         this.props.addAccount({
           url: this.state.url,
           username: this.state.username,
-          password: this.state.password
+          password: this.props.password
         })
 
         this.setState({
@@ -203,7 +199,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     addAccount: (newAccount) => { dispatch(addAccount(newAccount)) },
-    addPassword: (password) => { dispatch(addPassword(password)) }
+    addPassword: (password) => { dispatch(addPassword(password)) },
+    clearPassword: () => { dispatch(clearPassword()) }
   }
 }
 

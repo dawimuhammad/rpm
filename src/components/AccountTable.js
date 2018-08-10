@@ -23,7 +23,6 @@ class AccountTable extends Component {
 
     triggerDeleteAccount (id) {
         this.props.deleteAccount(id)
-
         this.props.fetchAccounts()
     }
 
@@ -49,11 +48,13 @@ class AccountTable extends Component {
 
               <TableHead>
                 <TableRow>
-                  <TableCell numeric>No</TableCell>
-                  <TableCell>Provider</TableCell>
-                  <TableCell>Email</TableCell>
-                  <TableCell>Password</TableCell>
-                  <TableCell numeric>Actions</TableCell>
+                  <TableCell numeric className="test">No</TableCell>
+                  <TableCell className="test">Provider</TableCell>
+                  <TableCell className="test">Email</TableCell>
+                  <TableCell className="test">Password</TableCell>
+                  <TableCell className="test">Created At</TableCell>
+                  <TableCell className="test">Updated At</TableCell>
+                  <TableCell className="test">Actions</TableCell>
                 </TableRow>
               </TableHead>
 
@@ -62,7 +63,9 @@ class AccountTable extends Component {
               {
                   isAccountsEmpty ? (
                     <TableRow>
-                      <TableCell component="th" scope="row"> </TableCell>
+                      <TableCell scope="row"> </TableCell>
+                      <TableCell> </TableCell>
+                      <TableCell> </TableCell>
                       <TableCell> </TableCell>
                       <TableCell> </TableCell>
                       <TableCell> </TableCell>
@@ -73,10 +76,12 @@ class AccountTable extends Component {
                     accounts.map( (account, i) => {
                       return (
                         <TableRow key={ i }>
-                          <TableCell component="th" scope="row"> { i+1 } </TableCell>
-                          <TableCell> { account.url }</TableCell>
-                          <TableCell> { account.username }</TableCell>
-                          <TableCell> { account.password }</TableCell>
+                          <TableCell component="th" scope="row" className="test"> { i+1 } </TableCell>
+                          <TableCell className="test"> { account.url }</TableCell>
+                          <TableCell className="test"> { account.username }</TableCell>
+                          <TableCell className="test"> { account.password }</TableCell>
+                          <TableCell className="test"> { account.createdAt }</TableCell>
+                          <TableCell className="test"> { account.updatedAt }</TableCell>
                         <TableCell>
                       <Button color="primary" onClick={ () => this.triggerUpdateAccount(account.uuid) }>
                           Update
