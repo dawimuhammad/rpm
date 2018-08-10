@@ -14,6 +14,16 @@ export const addAccount = (newAccount) => async dispatch => {
     dispatch(fetchAccounts())
 }
 
+export const addPassword = password => {
+  // console.log('data di actions',bestBook)
+  return {
+    type: 'ADD_PASSWORD',
+    payload: {
+      password: password
+    }
+  }
+}
+
 export const deleteAccount = (id) => async dispatch => {
     console.log('id dapet dari account action', id)
 

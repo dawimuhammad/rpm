@@ -8,11 +8,20 @@ import Button from '@material-ui/core/Button'
 import AddIcon from '@material-ui/icons/Add'
 import { withStyles } from '@material-ui/core/styles'
 
-import { addAccount } from '../actions/accountActions'
+import { addAccount, addPassword } from '../actions/accountActions'
 import { connect } from 'react-redux'
+
+import LowercaseChip from '../components/LowercaseChip'
+import UppercaseChip from '../components/UppercaseChip'
+import NumberCharacterChip from '../components/NumberCharacterChip'
+import SpecialCharacterChip from '../components/SpecialCharacterChip'
+import MinimumCharacterChip from '../components/MinimumLengthChip'
 
 const styles = theme => ({
   button: {
+    margin: theme.spacing.unit,
+  },
+  chip: {
     margin: theme.spacing.unit,
   }
 })
@@ -23,7 +32,12 @@ class RPMInput extends Component {
       this.state = {
           username: '',
           password: '',
-          url: ''
+          url: '',
+          lowercase_chip: 'secondary',
+          uppercase_chip: 'secondary',
+          minimum_length_chip: 'secondary',
+          special_character_chip: 'secondary',
+          number_character_chip: 'secondary'
       }
 
       this.urlChange = this.urlChange.bind(this)
@@ -45,9 +59,11 @@ class RPMInput extends Component {
     }
 
     passwordChange(e) {
-        this.setState({
-            password : e.target.value
-        })
+        // this.setState({
+        //     password : e.target.value
+        // })
+        this.props.addPassword(e.target.value)
+
     }
 
     submitAccount(e) {
@@ -123,9 +139,35 @@ class RPMInput extends Component {
                         fullWidth
                         autoComplete="current-password"
                         margin="normal"
-                        value={ this.state.password }
+                        value={ this.props.password }
                         onChange={ this.passwordChange }
                       />
+
+                    <Grid container
+                          justify="center"
+                          alignItems="center"
+                          className="container-password-chips" >
+
+                          <Grid item sm={8}>
+                            <LowercaseChip password={ this.props.password } />
+                          </Grid>
+
+                          <Grid item sm={8}>
+                            <UppercaseChip password={ this.props.password }/>
+                          </Grid>
+
+                          <Grid item sm={8}>
+                            <NumberCharacterChip password={ this.props.password } />
+                          </Grid>
+
+                          <Grid item sm={8}>
+                            <SpecialCharacterChip password={ this.props.password } />
+                          </Grid>
+
+                          <Grid item sm={8}>
+                            <MinimumCharacterChip password={ this.props.password } />
+                          </Grid>
+                    </Grid>
 
                       <Grid container
                             justify="center"
@@ -135,6 +177,7 @@ class RPMInput extends Component {
                             <Button id="account-save" type="submit" variant="fab" color="primary" className="rpm-button-account-save">
                                 <AddIcon />
                             </Button>
+
                       </Grid>
 
                     </form>
@@ -150,11 +193,19 @@ class RPMInput extends Component {
     }
 }
 
+const mapStateToProps = state => {
+  return {
+    accounts: state.accountsReducer.accounts,
+    password: state.accountsReducer.password
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
-    addAccount: (newAccount) => { dispatch(addAccount(newAccount)) }
+    addAccount: (newAccount) => { dispatch(addAccount(newAccount)) },
+    addPassword: (password) => { dispatch(addPassword(password)) }
   }
 }
 
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(RPMInput))
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(RPMInput))
