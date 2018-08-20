@@ -50,7 +50,7 @@ class AccountTable extends Component {
                 <TableRow>
                   <TableCell numeric className="test">No</TableCell>
                   <TableCell className="test">Provider</TableCell>
-                  <TableCell className="test">Email</TableCell>
+                  <TableCell className="test">Username</TableCell>
                   <TableCell className="test">Password</TableCell>
                   <TableCell className="test">Created At</TableCell>
                   <TableCell className="test">Updated At</TableCell>
