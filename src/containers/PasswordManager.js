@@ -36,7 +36,7 @@ class PasswordManager extends Component {
 
               </Grid>
 
-              <Grid container
+              {/* <Grid container
                     direction="row"
                     justify="center"
                     alignItems="center"
@@ -46,7 +46,7 @@ class PasswordManager extends Component {
                         <SearchAccount />
                 </Grid>
 
-              </Grid>
+              </Grid> */}
 
               <Grid container
                     direction="row"

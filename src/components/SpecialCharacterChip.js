@@ -5,7 +5,8 @@ import Chip from '@material-ui/core/Chip'
 class SpecialCharacterChip extends Component {
     checkSpecialCharacter() {
         // eslint-disable-next-line
-        const reg = /.*[!@#\$%\^&\*]/
+        const reg = /.*[!@#\$%\^&\*\[\]\{\}|;:"'`~,.<>?/\-()_+=]/
+
         return reg.test(this.props.password)
     }
 
@@ -13,13 +14,7 @@ class SpecialCharacterChip extends Component {
       return (
         <React.Fragment>
           <Grid item xs={12} sm={12}>
-              {
-                  this.checkSpecialCharacter() ? (
-                      <Chip color="primary" className="chip" label="Password must contain ONE special characters" />
-                  ) : (
-                      <Chip color="secondary" className="chip" label="Password must contain ONE special characters" />
-                  )
-              }
+            <Chip color={ (this.checkSpecialCharacter()) ? ('primary') : ('secondary') } className="chip" label="Password must contain ONE special characters" />
           </Grid>
         </React.Fragment>
       )

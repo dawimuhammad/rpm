@@ -16,7 +16,7 @@ class NavigationBar extends Component {
               alignItems="center" >
               <Toolbar>
                   <Typography>
-                      Welcome, user!
+                      Welcome! Tell me your secret and we do the rest.
                   </Typography>
               </Toolbar>
 

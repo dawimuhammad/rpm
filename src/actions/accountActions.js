@@ -4,7 +4,7 @@ import moment from 'moment'
 
 export const addAccount = (newAccount) => async dispatch => {
     let ref = database.collection('accounts').doc()
-    console.log('password yang diterima action --> ',newAccount.password)
+
     ref.set({
         uuid: ref.id,
         url: newAccount.url,
@@ -15,17 +15,17 @@ export const addAccount = (newAccount) => async dispatch => {
     })
     .then( () => {
         swal('You Rock!', 'Added one account to be protected!', 'success')
-        dispatch(clearPassword())
+        dispatch(clearPassword(''))
         dispatch(fetchAccounts())
     })
     .catch( (err) => {
       swal('Ouch!', 'Failed!', 'error')
-      dispatch(clearPassword())
+      dispatch(clearPassword(''))
       dispatch(fetchAccounts())
     })
 }
 
-export const clearPassword = password => {
+export const clearPassword = password => {  // calling clearPassword with empty value will result broken parameter for regex test on components
     return {
         type: 'CLEAR_PASSWORD',
         payload: {

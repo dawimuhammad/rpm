@@ -12,13 +12,7 @@ class UppercaseChip extends Component {
       return (
         <React.Fragment>
           <Grid item xs={12} sm={12}>
-              {
-                  this.checkUppercase() ? (
-                      <Chip color="primary" className="chip" label="Password must contain ONE uppercase character" />
-                  ) : (
-                      <Chip color="secondary" className="chip" label="Password must contain ONE uppercase character" />
-                  )
-              }
+            <Chip color={ (this.checkUppercase()) ? ('primary') : ('secondary') } className="chip" label="Password must contain ONE uppercase character" />
           </Grid>
         </React.Fragment>
       )

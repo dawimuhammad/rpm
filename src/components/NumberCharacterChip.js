@@ -12,13 +12,7 @@ class NumberCharacterChip extends Component {
       return (
         <React.Fragment>
           <Grid item xs={12} sm={12}>
-              {
-                  this.checkNumberCharacter() ? (
-                      <Chip color="primary" className="chip" label="Password must contain ONE numeric characters" />
-                  ) : (
-                      <Chip color="secondary" className="chip" label="Password must contain ONE numeric characters" />
-                  )
-              }
+            <Chip color={ (this.checkNumberCharacter()) ? ('primary') : ('secondary') } className="chip" label="Password must contain ONE numeric characters" />
           </Grid>
         </React.Fragment>
       )

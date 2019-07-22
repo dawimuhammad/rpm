@@ -59,17 +59,23 @@ class RPMInput extends Component {
     }
 
     passwordChange(e) {
+        if (e.target.value === undefined) {
+          e.target.value = ''
+        }
+
         this.props.addPassword(e.target.value)
     }
 
-    submitAccount(e) {
+    async submitAccount(e) {
         e.preventDefault()
 
-        this.props.addAccount({
+        await this.props.addAccount({
           url: this.state.url,
           username: this.state.username,
           password: this.props.password
         })
+
+        await this.props.addPassword('')
 
         this.setState({
             url: '',
@@ -79,10 +85,8 @@ class RPMInput extends Component {
     }
 
     render () {
-
         return (
           <React.Fragment>
-
               <Paper>
                 <Grid container
                       direction="row"
@@ -95,7 +99,7 @@ class RPMInput extends Component {
                         alignItems="center" >
 
                       <Typography>
-                          Password Manager Form
+                          Password Manager
                       </Typography>
 
                   </Grid>
@@ -108,8 +112,8 @@ class RPMInput extends Component {
 
                       <TextField
                         id="account-url"
-                        label="Provider URL"
-                        placeholder="Type your account provider URL .."
+                        label="Host"
+                        placeholder="Type your account host URL .."
                         fullWidth
                         margin="normal"
                         value={ this.state.url }
@@ -182,8 +186,6 @@ class RPMInput extends Component {
 
                 </Grid>
               </Paper>
-
-
           </React.Fragment>
         )
     }

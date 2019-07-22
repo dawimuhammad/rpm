@@ -42,7 +42,7 @@ class AccountTable extends Component {
         const accounts = this.props.accounts
 
         let isAccountsEmpty = accounts.length === 0
-        // console.log(this.props.accounts)
+
         return (
             <Table className="rpm-table">
 
