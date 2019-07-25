@@ -4,7 +4,7 @@
 /node_modules
 
 #environment key
-./firebase/firebase.js
+/firebase/firebase.js
 
 # testing
 /coverage
